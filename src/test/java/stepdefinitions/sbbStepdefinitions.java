@@ -2,10 +2,12 @@ package stepdefinitions;
 
 
 import com.github.javafaker.Faker;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.Keys;
 import pages.sbbPage;
 import utilities.ConfigReader;
 import utilities.Driver;
@@ -19,6 +21,7 @@ public class sbbStepdefinitions {
     public void go_to_the_address(String Url) {
         Driver.getDriver().get(ConfigReader.getProperty("sbbUrl"));
         sbbPage.cokiesAkzeptieren.click();
+        ReusableMethods.bekle(3);
     }
     @When("Click on the Anmelden button")
     public void click_on_the_anmelden_button() {
@@ -51,5 +54,35 @@ sbbPage.passwordBox.sendKeys(password);
         Driver.closeDriver();
 
     }
+
+
+    @When("Enter the bus stop to board.")
+    public void enter_the_bus_stop_to_board() {
+        sbbPage.vonBox.sendKeys("Kronbühl, Bruggbach");
+    }
+    @When("Enter the destination stop.")
+    public void enter_the_destination_stop() {
+        sbbPage.nachBox.sendKeys("St. Gallen, Bahnhof");
+        sbbPage.stGallenBahnhofOption.click();
+
+    }
+
+
+
+    @And("Select a different date.")
+    public void selectADifferentDate() {
+        sbbPage.datum.click();
+        sbbPage.datum.clear();
+        sbbPage.datum.sendKeys("01.01.2024");
+    }
+
+    @And("Select a different time.")
+    public void selectADifferentTime() {
+        sbbPage.uhr.click();
+        sbbPage.uhr.clear();
+        sbbPage.uhr.sendKeys("09.30");
+        sbbPage.uhr.sendKeys(Keys.ENTER);
+    }
+
 
 }

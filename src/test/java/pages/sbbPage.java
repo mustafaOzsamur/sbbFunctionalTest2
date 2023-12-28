@@ -29,4 +29,19 @@ public class sbbPage {
 
     @FindBy(xpath = "//span[contains(text(),'Sie konnten nicht eingeloggt werden, bitte überprü')]")
     public WebElement warnungTextElement;
+
+    @FindBy(xpath = "//input[@id='Von0']")
+    public WebElement vonBox;
+
+    @FindBy(xpath = "//input[@id='Nach1']")
+    public WebElement nachBox;
+
+    @FindBy(xpath = "//*[@id='datepicker-input']")
+    public WebElement datum;
+
+    @FindBy(id = "input-id")
+    public WebElement uhr;
+
+    @FindBy(xpath = "(//div[@class='flex w-full items-center rounded-1 px-1'])[2]")
+    public WebElement stGallenBahnhofOption;
 }
